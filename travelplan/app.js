@@ -50,8 +50,13 @@ app.use(session({
     saveUninitialized:true
 }));
 
+router.get('/',controller.intro);
 router.post('/login',passport.authenticate('login',{
     successRedirect:'/',
     failureRedirect:'/',
     failureFlash:true
 }));
+router.get('/login',controller.getlogin);
+router.post('/login',controller.setlogin);
+router.get('/member',controller.getmember);
+router.post('/member',controller.setmember);

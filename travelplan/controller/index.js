@@ -17,5 +17,25 @@ module.exports.intro = function(req, res) {
  */
 
 module.exports.getlogin =  function (req, res) {
+  console.log('getlogin');
   res.render('login');
+};
+
+module.exports.setlogin =  function (req, res) {
+  console.log('setlogin');
+  res.redirect('home');
+};
+
+/**
+ * member join
+ */
+
+module.exports.getmember =  function (req, res) {
+  console.log('getmember');
+  res.render('memberJoin');
+};
+
+module.exports.setmember =  function (req, res) {
+  console.log('setmember');
+  res.redirect('login');
 };
