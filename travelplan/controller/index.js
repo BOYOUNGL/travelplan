@@ -32,7 +32,7 @@ module.exports.setlogin =  function (req, res) {
 
 module.exports.getmember =  function (req, res) {
   console.log('getmember');
-  res.render('memberJoin');
+  res.render('join');
 };
 
 module.exports.setmember =  function (req, res) {

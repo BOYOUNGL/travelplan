@@ -58,5 +58,5 @@ router.post('/login',passport.authenticate('login',{
 }));
 router.get('/login',controller.getlogin);
 router.post('/login',controller.setlogin);
-router.get('/member',controller.getmember);
-router.post('/member',controller.setmember);
+router.get('/join',controller.getmember);
+router.post('/join',controller.setmember);
