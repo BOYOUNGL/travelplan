@@ -21,13 +21,8 @@ app.use(multer({ dest: __dirname + '/public/uploads/' }).any());
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(method());
 
-app.get('/', controller.intro);
-app.get('/login', controller.getlogin);
-app.post('/login',function(request, response){
-
-});
 app.listen(3000,function(){
-    console.log("server");
+    console.log("start server");
 });
 //database
 mongoose.connect('mongodb://localhost:27017/test');
@@ -49,14 +44,19 @@ app.use(session({
     resave:false,
     saveUninitialized:true
 }));
+app.get('/', controller.intro);
+app.get('/login', controller.getlogin);
+app.get('/join',controller.getmember);
+app.post('/login',function(request, response){
 
-router.get('/',controller.intro);
+});
+// router.get('/',controller.intro);
 router.post('/login',passport.authenticate('login',{
     successRedirect:'/',
     failureRedirect:'/',
     failureFlash:true
 }));
-router.get('/login',controller.getlogin);
-router.post('/login',controller.setlogin);
-router.get('/join',controller.getmember);
-router.post('/join',controller.setmember);
+// router.get('/login',controller.getlogin);
+// router.post('/login',controller.setlogin);
+// router.get('/join',controller.getmember);
+// router.post('/join',controller.setmember);
