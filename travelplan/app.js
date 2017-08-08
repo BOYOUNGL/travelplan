@@ -6,19 +6,18 @@ const method       = require('method-override');
 const multer       = require('multer');
 const controller   = require('./controller');
 const passport = require('passport');
+const path = require('path');
 const mongoose = require('mongoose');
-//const mongojs = require('mongojs');
 const session = require('express-session');
-var router = express.Router();
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
-//app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer({ dest: __dirname + '/public/uploads/' }).any());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(method());
 
 app.listen(3000,function(){
@@ -47,16 +46,8 @@ app.use(session({
 app.get('/', controller.intro);
 app.get('/login', controller.getlogin);
 app.get('/join',controller.getmember);
-app.post('/login',function(request, response){
-
-});
-// router.get('/',controller.intro);
-router.post('/login',passport.authenticate('login',{
+app.post('/login',passport.authenticate('login',{
     successRedirect:'/',
     failureRedirect:'/',
     failureFlash:true
 }));
-// router.get('/login',controller.getlogin);
-// router.post('/login',controller.setlogin);
-// router.get('/join',controller.getmember);
-// router.post('/join',controller.setmember);
