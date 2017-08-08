@@ -45,9 +45,14 @@ app.use(session({
 }));
 app.get('/', controller.intro);
 app.get('/login', controller.getlogin);
-app.get('/join',controller.getmember);
 app.post('/login',passport.authenticate('login',{
     successRedirect:'/',
     failureRedirect:'/',
     failureFlash:true
+}));
+app.get('/join',controller.getmember);
+app.post('/join', passport.authenticate('join', {
+    successRedirect : '/',
+    failureRedirect : '/', //가입 실패시 redirect할 url주소
+    failureFlash : true
 }));
