@@ -10,6 +10,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const mongojs = require('mongojs');
 const session = require('express-session');
+const flash = require('flash');
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -47,11 +48,12 @@ app.use(session({
 
 app.get('/', controller.intro);
 app.get('/login', controller.getLogin);
+
 app.post('/login',passport.authenticate('login',{
     successRedirect:'/home',
     failureRedirect:'/',
     failureFlash:true
-}));
+}),controller.postLogin);
 app.get('/join',controller.getJoin);
 app.post('/join', controller.postJoin);
 app.get('/home',controller.getHome);
