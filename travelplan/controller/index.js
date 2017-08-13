@@ -53,3 +53,8 @@ module.exports.getHome =  function (req, res) {
   console.log('home');
   res.render('home');
 };
+
+module.exports.getAddStory =  function (req, res) {
+  console.log('getAddStory');
+  res.render('addStory');
+};
