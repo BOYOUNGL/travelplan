@@ -53,3 +53,8 @@ module.exports.setJoin =  function (req, res) {
     });
     res.redirect('login');
 };
+
+module.exports.gethome =  function (req, res) {
+  console.log('home');
+  res.render('home');
+};

@@ -44,6 +44,7 @@ app.use(session({
     resave:false,
     saveUninitialized:true
 }));
+
 app.get('/', controller.intro);
 app.get('/login', controller.getlogin);
 app.post('/login',passport.authenticate('login',{
@@ -53,3 +54,4 @@ app.post('/login',passport.authenticate('login',{
 }));
 app.get('/join',controller.getmember);
 app.post('/join', controller.setJoin);
+app.get('/home',controller.gethome);
