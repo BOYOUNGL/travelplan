@@ -19,12 +19,12 @@ module.exports.intro = function(req, res) {
  * login
  */
 
-module.exports.getlogin =  function (req, res) {
+module.exports.getLogin =  function (req, res) {
   console.log('getlogin');
   res.render('login');
 };
 
-module.exports.setlogin =  function (req, res) {
+module.exports.postLogin =  function (req, res) {
   console.log('setlogin');
   res.redirect('home');
 };
@@ -33,17 +33,12 @@ module.exports.setlogin =  function (req, res) {
  * member join
  */
 
-module.exports.getmember =  function (req, res) {
-  console.log('getmember');
+module.exports.getJoin =  function (req, res) {
+  console.log('getJoin');
   res.render('join');
 };
 
-module.exports.setmember =  function (req, res) {
-  console.log('setmember');
-  res.redirect('login');
-};
-
-module.exports.setJoin =  function (req, res) {
+module.exports.postJoin =  function (req, res) {
     var user = new User;
     user.id = req.body.id;
     user.passwd = req.body.passwd;
@@ -54,7 +49,7 @@ module.exports.setJoin =  function (req, res) {
     res.redirect('login');
 };
 
-module.exports.gethome =  function (req, res) {
+module.exports.getHome =  function (req, res) {
   console.log('home');
   res.render('home');
 };

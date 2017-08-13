@@ -46,12 +46,13 @@ app.use(session({
 }));
 
 app.get('/', controller.intro);
-app.get('/login', controller.getlogin);
+app.get('/login', controller.getLogin);
 app.post('/login',passport.authenticate('login',{
-    successRedirect:'/',
+    successRedirect:'/home',
     failureRedirect:'/',
     failureFlash:true
 }));
-app.get('/join',controller.getmember);
-app.post('/join', controller.setJoin);
-app.get('/home',controller.gethome);
+app.get('/join',controller.getJoin);
+app.post('/join', controller.postJoin);
+app.get('/home',controller.getHome);
+app.get('/addStroy',controller.getAddStory);
