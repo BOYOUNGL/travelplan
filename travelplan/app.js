@@ -8,6 +8,7 @@ const controller   = require('./controller');
 const passport = require('passport');
 const path = require('path');
 const mongoose = require('mongoose');
+const mongojs = require('mongojs');
 const session = require('express-session');
 
 const app = express();
@@ -51,8 +52,4 @@ app.post('/login',passport.authenticate('login',{
     failureFlash:true
 }));
 app.get('/join',controller.getmember);
-app.post('/join', passport.authenticate('join', {
-    successRedirect : '/',
-    failureRedirect : '/', //가입 실패시 redirect할 url주소
-    failureFlash : true
-}));
+app.post('/join', controller.setJoin);

@@ -1,3 +1,6 @@
+
+var User = require('../models/user.js');
+
 /**
  * issue
  *
@@ -38,4 +41,15 @@ module.exports.getmember =  function (req, res) {
 module.exports.setmember =  function (req, res) {
   console.log('setmember');
   res.redirect('login');
+};
+
+module.exports.setJoin =  function (req, res) {
+    var user = new User;
+    user.id = req.body.id;
+    user.passwd = req.body.passwd;
+    user.email = req.body.email;
+    user.save(function (err) {
+        if (err) throw err;
+    });
+    res.redirect('login');
 };
