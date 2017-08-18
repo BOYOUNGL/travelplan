@@ -25,7 +25,7 @@ module.exports.getLogin =  function (req, res) {
 };
 
 module.exports.postLogin =  function (req, res) {
-  console.log('setlogin');
+  console.log('postLogin');
   res.redirect('home');
 };
 
