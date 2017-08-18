@@ -9,10 +9,12 @@ var user = mongoose.Schema({
     date:String
 });
 
-user.methods.generateHash = function(passwd){
+/*user.methods.generateHash = function(passwd){
     return bcrypt.hashSync(passwd,bcrypt.genSaltSync(8),null);
 };
-user.methods.validPasswd = function(password){
-    return bcrypt.compareSync(passwd,this.local.passwd);
+*/
+user.methods.validPasswd = function(passwd){
+    return true;
+    // return bcrypt.compareSync(passwd,this.passwd);
 };
 module.exports = mongoose.model('User',user);

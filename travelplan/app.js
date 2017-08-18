@@ -10,7 +10,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const mongojs = require('mongojs');
 const session = require('express-session');
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -39,6 +39,7 @@ db.once('open',function(callback){
 
 app.use(passport.initialize());
 app.use(passport.session());//로그인 세션유지
+app.use(flash());
 
 app.use(session({
     secret:'keyboard cat',
@@ -51,8 +52,8 @@ app.get('/', controller.intro);
 app.get('/login', controller.getLogin);
 app.post('/login',passport.authenticate('login',{
     successRedirect:'/home',
-    failureRedirect:'/'
-    // failureFlash:true
+    failureRedirect:'/',
+    failureFlash:true
 }),controller.postLogin);
 
 app.get('/join',controller.getJoin);
