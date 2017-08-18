@@ -19,24 +19,15 @@
     </style>
 
     <script>
-        $("#btn_login").click(function () {
-          $.ajax({
-            type: "POST",
-            url: "/login",
-            data: {
-              id : $("#id").val(),
-              passwd : $("#passwd").val()
-            },
-            success: function (res) {
-              alert(res);
-              $(location).attr('href', '/home');
-            },
-            error: function (error) {
-              console.log("Error");
-              $(location).attr('href', '/');
-            }
-          });
-        });
+        function login_click(){
+          var id = $('#id').val();
+          var passwd = $('#passwd').val();
+          if(id == '' || passwd == '' ){
+            alert("모두 입력하세요");
+          }else{
+            $("#passport_form").submit();
+          }
+        }
     </script>
 
   </head>
@@ -52,7 +43,7 @@
           </form>
 
            <div class="app_btn_area">
-              <div class="btn_03" style="float:left; margin-right:10px;" onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" id="btn_login" name="btn_login">Login</div>
+              <div class="btn_03" style="float:left; margin-right:10px;" onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" id="btn_login" name="btn_login" onClick="login_click()">Login</div>
               <div class="btn_03" style="float:left; " onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" name="btn_join" id="btn_join" onClick="location.href='/join'">Join</div>
           </div>
         </div>

@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const mongojs = require('mongojs');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cookieSession = require('cookie-session');
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer({ dest: __dirname + '/public/uploads/' }).any());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(method());
+app.use(flash());
 
 app.listen(3000,function(){
     console.log("start server");
@@ -36,16 +38,14 @@ db.once('open',function(callback){
     console.log("mongoDB connected");
 });
 
-
+app.use(cookieSession({
+  keys: ['test'],
+  cookie: {
+    maxAge: 1000 * 60 * 60 // 유효기간 1시간
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());//로그인 세션유지
-app.use(flash());
-
-app.use(session({
-    secret:'keyboard cat',
-    resave:false,
-    saveUninitialized:true
-}));
 
 app.get('/', controller.intro);
 
@@ -55,6 +55,10 @@ app.post('/login',passport.authenticate('login',{
     failureRedirect:'/',
     failureFlash:true
 }),controller.postLogin);
+app.get('/logout',function(req,res){
+    req.logout();
+    req.redirect('/');
+})
 
 app.get('/join',controller.getJoin);
 app.post('/join', controller.postJoin);
