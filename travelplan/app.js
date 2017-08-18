@@ -5,12 +5,12 @@ const bodyParser   = require('body-parser');
 const method       = require('method-override');
 const multer       = require('multer');
 const controller   = require('./controller');
-const passport = require('passport');
+const passport = require('./controller/passport');
 const path = require('path');
 const mongoose = require('mongoose');
 const mongojs = require('mongojs');
 const session = require('express-session');
-const flash = require('flash');
+// const flash = require('connect-flash');
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -35,7 +35,7 @@ db.on('error',console.error.bind(console,'connection error'));
 db.once('open',function(callback){
     console.log("mongoDB connected");
 });
-require('./controller/passport');
+
 
 app.use(passport.initialize());
 app.use(passport.session());//로그인 세션유지
@@ -47,13 +47,14 @@ app.use(session({
 }));
 
 app.get('/', controller.intro);
-app.get('/login', controller.getLogin);
 
+app.get('/login', controller.getLogin);
 app.post('/login',passport.authenticate('login',{
     successRedirect:'/home',
-    failureRedirect:'/',
-    failureFlash:true
+    failureRedirect:'/'
+    // failureFlash:true
 }),controller.postLogin);
+
 app.get('/join',controller.getJoin);
 app.post('/join', controller.postJoin);
 app.get('/home',controller.getHome);
