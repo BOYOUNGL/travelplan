@@ -980,6 +980,28 @@ h4 {
   height:40px;
   margin: 20px 0 0 20px;
 }
+
+.text_box {
+  width:1200px;
+  height:600px;
+  margin: 20px 20px 20px 20px;
+  border:#e1e1e1 solid;
+  padding-top:50px;
+  opacity:0.7;
+  margin:0
+  auto;
+  margin-top:70px;
+}
+
+.add_btn_area {
+  width:330px;
+  height:40px;
+  margin: 400px 10px 0 400px;
+  margin:0
+  auto;
+  margin-top:50px;
+}
+
 .status {
 	width:500px;
 	height:40px;
@@ -1163,6 +1185,13 @@ h4 {
  .input_login{width:340px; height:40px; margin:20px 25px;}
  .btn_login{width:340px; height:40px; margin:0 auto; margin-top:40px;}
  .input_type{width:300px; height:30px; padding:5px; color:#333333; font-size:15px;}
+
+
+ /*add_story*/
+
+#addStory{width:100%; height:100%; background-size:cover;opacity:1.0;}
+
+ .add_box{width:250px; height:370px;padding-top:10px; background-color:#333333; opacity:0.7; margin:0 auto;margin-top:80px;}
 
  label.error {
     color: #FB3A3A;
