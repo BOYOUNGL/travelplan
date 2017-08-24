@@ -12,7 +12,8 @@
 
     <title>Travel</title>
     <script src="/js/jquery-latest.min.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <style>
       a { text-decoration:none }
       a:hover { text-decoration:none !important }
@@ -45,6 +46,16 @@
            <div class="app_btn_area">
               <div class="btn_03" style="float:left; margin-right:10px;" onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" id="btn_login" name="btn_login" onClick="login_click()">Login</div>
               <div class="btn_03" style="float:left; " onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" name="btn_join" id="btn_join" onClick="location.href='/join'">Join</div>
+             <div id="naver_id_login"></div>
+             <script type="text/javascript">
+                var naver_id_login = new naver_id_login("Q0VGMQp6k95cYD3Qdrn8", "http://localhost:3000/home");
+                var state = naver_id_login.getUniqState();
+                naver_id_login.setButton("white", 2,40);
+                naver_id_login.setDomain("http://localhost:3000/login");
+                naver_id_login.setState(state);
+
+                naver_id_login.init_naver_id_login();
+            </script>
           </div>
         </div>
       </div>

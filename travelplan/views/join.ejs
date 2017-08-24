@@ -15,13 +15,17 @@
       function submitJoin(option) {
           var id = $('#id').val();
           var passwd = $('#passwd').val();
+          var passwd2 = $('#passwd2').val();
           var email = $('#email').val();
           if(option == 'add') {
               // 새 글 등록 시
               if(id == '' || passwd == '' || email == '') {
                   alert("모두 입력하세요");
                   return;
-              } else {
+              } else if(passwd!=passwd2){
+                  alert("패스워드가 다릅니다.");
+                  return;
+              }else if(passwd==passwd2){
                   $('#join_form').submit();
               }
           }
@@ -34,21 +38,23 @@
     </style>
   </head>
 
-  <body style="margin: 0 0 0 0;" onLoad="document.join_form.id.focus();">
-    <div id="join_bg">
-      <div class="join_logo"><img src="/img/img_intro.png" width="286" height="70"></div>
+<body onLoad="document.passport_form.id.focus();" id="join_bg">
       <div class="join_box">
         <div class="box_title">
           <div class="title_txt">Join</div>
           <form method="POST" action="/join" name="join_form" id="join_form">
-            <div>아이디 <input type="text" class="input_type" name="id" id="id"/></div>
-            <div>비밀번호 <input type="password" class="input_type" name="passwd" id="passwd" /></div>
-            <div>비밀번호 확인<input type="password" class="input_type" name="passwd2" id="passwd2" /></div>
-            <div>이메일 <input type="text" class="input_type" name="email" id="email" onkeypress="if(event.keyCode==13) {document.forms['join_form'].submit();}"/></div>
+          <div>
+              <table>
+                <tr><td width="36%"><span class="join_txt">아이디</span> </td><td><input type="text" class="input_type2" name="id" id="id"/></td></tr>
+                <tr><td width="36%"><span class="join_txt">비밀번호</span> </td><td><input type="password" class="input_type2" name="passwd" id="passwd" /></td></tr>
+                <tr><td width="36%"><span class="join_txt">비밀번호 확인</span> </td><td><input type="password" class="input_type2" name="passwd2" id="passwd2" /></td></tr>
+                <tr><td width="36%"><span class="join_txt">이메일</span> </td><td><input type="text" class="input_type2" name="email" id="email" onkeypress="if(event.keyCode==13) {document.forms['join_form'].submit();}"/></td></tr>
+              </table>
+            </div>
           </form>
-          <div id="div_join"><input type="button" name="btn_join" id="btn_join" value="Join" onclick="submitJoin('add')"></div>
+          <div class="app_btn_area">
+            <div name="btn_join" id="btn_join"  class="btn_02" onMouseOver="this.className='btn_002';" onMouseOut="this.className='btn_02';" onclick="submitJoin('add')">Join</div>
+          </div>
         </div>
-      </div>
-    </div>
   </body>
 </html>

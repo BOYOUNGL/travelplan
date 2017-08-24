@@ -4,6 +4,10 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const express      = require('express');
 const app = express();
+var NaverStrategy = require('passport-naver').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var KakaoStrategy = require('passport-kakao').Strategy;
+
 app.use(flash());
 
 passport.serializeUser(function(user,done){
@@ -22,8 +26,9 @@ passport.use('login',
             passReqToCallback:true
         },function(req,id,passwd,done){
             console.log("id : "+id);
+            console.log("passwd : "+passwd);
             user.findOne({'id':id},function(error,user){
-                // if(error) return done(error);
+                if(error) return done(error);
                 if(!user) return done(null,false,req.flash('loginMessage','사용자를 찾을 수 없습니다'));
                 if(!user.validPasswd(passwd)) return done(null,false,req.flash('loginMessage','비밀번호가 다릅니다.'));
                 return done(null,user);
