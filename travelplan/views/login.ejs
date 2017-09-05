@@ -35,6 +35,7 @@
 
  <body onLoad="document.passport_form.id.focus();" id="login_bg">
 
+
       <div class="login_box">
         <div class="box_title">
           <div class="title_txt">Login to your account</div>
@@ -46,6 +47,9 @@
            <div class="app_btn_area">
               <div class="btn_03" style="float:left; margin-right:10px;" onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" id="btn_login" name="btn_login" onClick="login_click()">Login</div>
               <div class="btn_03" style="float:left; " onMouseOver="this.className='btn_04';" onMouseOut="this.className='btn_03';" name="btn_join" id="btn_join" onClick="location.href='/join'">Join</div>
+
+              <!-- naver -->
+
              <div id="naver_id_login"></div>
              <script type="text/javascript">
                 var naver_id_login = new naver_id_login("Q0VGMQp6k95cYD3Qdrn8", "http://localhost:3000/home");
@@ -56,6 +60,61 @@
 
                 naver_id_login.init_naver_id_login();
             </script>
+
+            <!-- facebook -->
+
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
+
+            <div id="fb-root"></div>
+            <script>
+              window.fbAsyncInit = function() {
+                FB.init({
+                  appId      : '129101121058618',
+                  cookie     : true,
+                  xfbml      : true,
+                  version    : 'v2.8'
+                });
+                FB.AppEvents.logPageView();
+              };
+
+             (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10&appId=129101121058618";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+
+            function checkLoginState() {
+              FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+              });
+              function statusChangeCallback(response) {
+                console.log('statusChangeCallback');
+                console.log(response);
+                if (response.status === 'connected') {
+                  // Logged into your app and Facebook.
+                  testAPI();
+                } else {
+                  // The person is not logged into your app or we are unable to tell.
+                  document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this app.';
+                }
+              }
+              function testAPI() {
+                FB.api('/me', function(response) {
+                      console.log("facebook login");
+                      location.href="/home";
+                });
+              }
+            }
+
+            </script>
+
           </div>
         </div>
       </div>

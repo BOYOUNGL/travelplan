@@ -95,3 +95,4 @@ app.get('/naverlogin', function (req, res) {
       }
     });
   });
+app.get('/me',controller.getHome);
